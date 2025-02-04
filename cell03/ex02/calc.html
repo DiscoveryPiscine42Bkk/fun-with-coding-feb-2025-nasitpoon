@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calc</title>
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <input type="text" name="num1" placeholder="Please input an integer">
+        <select name="operator">
+            <option value="add">+</option>
+            <option value="sub">-</option>
+            <option value="mul">*</option>
+            <option value="div">/</option>
+            <option value="mod">%</option>
+        </select>
+        <input type="text" name="num2" placeholder="Please input an integer">
+        <button type="submit">Try me!</button>
+    </form>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const num1 = form.num1.value;
+            const num2 = form.num2.value;
+            const operator = form.operator.value;
+            let result;
+
+            if (num1 < 0 || num2 < 0 || isNaN(num1) || isNaN(num2) || !Number.isInteger(parseFloat(num1)) || !Number.isInteger(parseFloat(num2))) {
+                alert("Error :(");
+                console.log("Error :(");
+                return;
+            }
+
+            if (operator === 'add') {
+                result = parseFloat(num1) + parseFloat(num2);
+            } else if (operator === 'sub') {
+                result = parseFloat(num1) - parseFloat(num2);
+            } else if (operator === 'mul') {
+                result = parseFloat(num1) * parseFloat(num2);
+            } else if (operator === 'div') {
+                if (num2 == 0) {
+                    result = "It’s over 9000!";
+                } else {
+                    result = parseFloat(num1) / parseFloat(num2);
+                }
+            } else if (operator === 'mod') {
+                if (num2 == 0) {
+                    result = "It’s over 9000!";
+                } else {
+                    result = parseFloat(num1) % parseFloat(num2);
+                }
+            }
+
+            alert(result);
+            console.log(result);
+
+            setInterval(() => {
+                alert("Please, use me...");
+            }, 30000);
+        });
+    </script>
+</body>
+
+</html>
